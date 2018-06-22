@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Spyder Editor
-
+@Author: Avantika GHosh
 This is a temporary script file.
 """
 from copy import deepcopy
@@ -17,8 +17,8 @@ print(data.shape)
 data.head()
 
 #Value plotting
-pt1 = data['V1'].values
-pt2 = data['V2'].values
+pt1 = data[].values
+pt2 = data[].values
 x = np.array(list(zip(pt1, pt2)))
 plt.scatter(pt1, pt2, c='black', s=7)
 
