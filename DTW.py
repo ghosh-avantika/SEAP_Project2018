@@ -3,6 +3,8 @@
 Created on Thu Jun 21 10:03:29 2018
 
 @author: Mitali
+
+Source: http://nbviewer.jupyter.org/github/alexminnaar/time-series-classification-and-clustering/blob/master/Time%20Series%20Classification%20and%20Clustering.ipynb
 """
 
 import pandas as pd
