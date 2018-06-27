@@ -3,8 +3,6 @@
 Created on Thu Jun 21 10:03:29 2018
 
 @author: Mitali
-
-Source: http://nbviewer.jupyter.org/github/alexminnaar/time-series-classification-and-clustering/blob/master/Time%20Series%20Classification%20and%20Clustering.ipynb
 """
 
 import pandas as pd
@@ -66,7 +64,6 @@ def knn(train,test,w):
 #print knn(train,test,4)
     
 import random
-import matplotlib.pylab as plt
 #clustering algorithm
 def k_means_clust(data,num_clust,num_iter,w=5):
     centroids=random.sample(data,num_clust)
@@ -98,12 +95,23 @@ def k_means_clust(data,num_clust,num_iter,w=5):
             centroids[key]=[m/len(assignments[key]) for m in clust_sum]
     return centroids
 #uncomment for training data
-#train = np.genfromtxt('datasets/train.csv', delimiter='\t')
-#test = np.genfromtxt('datasets/test.csv', delimiter='\t')
-#data=np.vstack((train[:,:-1])) #,test[:,:-1]))
-centroids=k_means_clust(data,1,10,4)
-for i in centroids:
-    
-    plt.plot(i)
+train = np.genfromtxt('datasets/train.csv', delimiter='\t')
+test = np.genfromtxt('datasets/test.csv', delimiter='\t')
+data=np.vstack((train[:,:-1])) #,test[:,:-1]))
+centroids=k_means_clust(data,4,10,4)
 
-plt.show()
+counter = 0
+for d in test:
+    min_i = 10
+    hold = 0
+    plt.figure()
+    plt.plot(d)
+    for i in centroids:
+        if(DTWDistance(i, d, 5) < min_i):
+            min_i = DTWDistance(i, d, 5)
+            hold = i
+    plt.plot(hold)
+    plt.savefig('DTW_test/plot' + str(counter) + '.png')
+    counter = counter + 1
+    print counter
+print "Finished!"
