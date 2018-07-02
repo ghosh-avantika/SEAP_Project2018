@@ -1,9 +1,10 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Spyder Editor
-@Author: Avantika GHosh
-This is a temporary script file.
+Created on Mon Jul  2 08:48:16 2018
+@author: Avantika Ghosh
 """
+
 from copy import deepcopy
 import numpy as np
 import pandas as pd
@@ -12,10 +13,10 @@ plt.rcParams['figure.figsize'] = (16, 9)
 plt.style.use('ggplot')
 
 #importing datasets
-"""
+
 from sklearn.externals import joblib
 data = joblib.load('airplane_data_time.pkl')
-"""
+
 def clustering(data):
 #    data = pd.read_csv('airplane')#change when data is received
 #    print(data.shape)
@@ -26,7 +27,7 @@ def clustering(data):
     pt2 = data.Alt.head(10000)
     x = np.array(list(zip(pt1, pt2)))
 #    x = pd.DataFrame(pt1.head(10000), pt2.head(10000))
-    print x
+    print(x)
     plt.scatter(pt1, pt2, c='black', s=7)
     
     #Calculating distance for updating centroid
@@ -49,7 +50,7 @@ def clustering(data):
     error = dist(C, old, None)
     # Loop will run till the error becomes zero
     while error != 0:
-        print error
+        print(error)
         # Assigning each value to its closest cluster
         for i in range(len(x)):
             distances = dist(x[i], C)
