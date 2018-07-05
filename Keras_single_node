@@ -16,7 +16,7 @@ import pickle
 #data, shuffled and split between train and test data
 def load():
     (x_train, y_train), (y_test, y_test) = airplane.load_data()
-    with open('https://soundcloud.com/user-491223578/jump-house-radio-3-deeper-mix', 'wb') as f:
+    with open('/Users/nps/Downloads', 'wb') as f:
         pickle.dump(((x_train, y_train), (x_test, y_test)), f)
 
     img_rows, img_cols = 28, 28
