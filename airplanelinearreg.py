@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jun  6 10:53:06 2018
+Created on Fri Jul  27 8:45:027 2018
 
-@author: Mitali
+@author: Avantika Ghosh
 """
 
 import numpy as np
@@ -15,25 +15,25 @@ from sklearn.utils.extmath import safe_sparse_dot
 from time import time
 
 t0 = time()
-with open('D:\\Mitali\\ML\\airplane_data\\2016-06-20-0001Z.json') as f:
+with open('C:\\Users\\pradi\\Documents\\Avantika\\Cloudera\\cloudera-quickstart-vm-5.13.0-0-virtualbox\\cloudera-quickstart-vm-5.13.0-0-virtualbox\\2016-06-20-0001Z.json', encoding = "utf-8") as f:
    data = json.load(f)
 df = pd.DataFrame(data['acList'])
-features = ['Alt', 'AltT', 'EngMount', 'EngType', 'Engines', 'GAlt', 'Gnd', 'InHg', 'Lat', 'Long', 'Mil', 'Mlat', 'Spd', 'SpdTyp', 'Species', 'TT', 'Trak', 'TrkH', 'Vsi', 'VsiT', 'WTC']
+features = ['Alt', 'AltT', 'CMsgs', 'TSecs', 'EngMount', 'EngType', 'Engines', 'GAlt', 'Gnd', 'InHg', 'Lat', 'Long', 'Mil', 'Mlat', 'PosTime', 'Spd', 'SpdTyp', 'Species', 'TT', 'Trak', 'TSecs', 'TrkH', 'Vsi', 'VsiT', 'WTC']
 for col in df:
     num = df[col].isnull().sum()
-    if(num > 1000):
+    if(num > 10000):
         df = df.drop(col, axis=1)
     elif(col not in features):
         df = df.drop(col, axis=1)
 #df = df.dropna(axis=0)
-df = df[df.Spd < 666]
-df = df[df.Alt < 50000]
+df = df[df.PosTime < 1530898419668]
+df = df[df.Mlat < 2]
 
 
-x0_train = df.Alt[:3000]
-y_train = df.Spd[:3000]
-x0_test = df.Alt[3000:]
-y_test = df.Spd[3000:]
+x0_train = df.PosTime[:3000]
+y_train = df.Mlat[:3000]
+x0_test = df.PosTime[3000:]
+y_test = df.Mlat[3000:]
 x0_test = x0_test[:,np.newaxis]
 x0_train = x0_train[:,np.newaxis]
 x0_test.sort(axis=0)
@@ -45,4 +45,4 @@ plt.title(s)
 plt.scatter(x0_train, y_train)
 plt.scatter(x0_test,y_test,color='k')
 plt.plot(x0_test,y,color='k')
-print (time() - t0)
+print((time() - t0))
